@@ -2,7 +2,7 @@
 //www.apluscompsci.com
 
 //Name - Kyle Devereaux
-//Date - 2/1/2019
+//Date - 2/4/2019
 //Class - APCSA p3
 //Lab  - Miles per hour
 
@@ -23,24 +23,30 @@ public class MilesPerHour
 
 	public MilesPerHour(int dist, int hrs, int mins)
 	{
+		setNums(dist,hrs,mins);
+		mph = 0.0;
 	}
 
 	public void setNums(int dist, int hrs, int mins)
 	{
+		distance = dist;
+		hours = hrs;
+		minutes = mins;
 	}
 
 	public void calcMPH()
 	{
+		double seconds = (hours * 60) + minutes;
+		mph = 60 * distance / seconds;
 	}
 
 	public void print()
 	{
+		out.println(distance + " miles in " + hours + " hour and " + minutes + " minutes = " + mph + " MPH.");
 	}
-	
-	//create a print or toString or both
 	
 	public String toString()
 	{
-		return "";
+		return distance + " miles in " + hours + " hour and " + minutes + " minutes = " + String.format("%.0f", mph) + " MPH.\n\n";
 	}
 }
