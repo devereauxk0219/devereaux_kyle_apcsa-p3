@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import static java.lang.System.*;
 
@@ -11,10 +11,15 @@ public class LetterRemover
 
 	public LetterRemover()
 	{
-		//call set
+		sentence = null;
+		lookFor = ' ';
 	}
 
-	//add in second constructor
+	public LetterRemover(String sentence, char lookFor)
+	{
+		this.sentence = sentence;
+		this.lookFor = lookFor;
+	}
 	
 	
 	public void setRemover(String s, char rem)
@@ -25,12 +30,17 @@ public class LetterRemover
 
 	public String removeLetters()
 	{
-		String cleaned=sentence;
+		String cleaned = sentence;
+		int loc = cleaned.indexOf(lookFor);
+		while(loc > -1) {
+			cleaned = cleaned.substring(0, loc) + cleaned.substring(loc+1);
+			loc = cleaned.indexOf(lookFor);
+		}
 		return cleaned;
 	}
 
 	public String toString()
 	{
-		return sentence + " - letter to remove " + lookFor;
+		return sentence + " - letter to remove " + lookFor + "\n" + removeLetters() + "\n\n";
 	}
 }
