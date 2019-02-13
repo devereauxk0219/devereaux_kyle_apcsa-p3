@@ -39,6 +39,8 @@ public class WordsCompare
 
 	public String toString()
 	{
+		compare();
+		
 		if(compare<0)
 		{
 			return wordOne + " should be placed before " + wordTwo + "\n";

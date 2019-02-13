@@ -14,7 +14,28 @@ public class StringEqualityRunner
 	{
 		StringEquality equalTest = new StringEquality();
 		
-		equalTest.setWords("hello", "bye");
+		equalTest.setWords("hello", "goodbye");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("one", "two");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("three", "four");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("TCEA", "UIL");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("State", "Champions");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("ABC", "ABC");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("ABC", "CBA");
+		out.println(equalTest.toString());
+		
+		equalTest.setWords("Same", "Same");
 		out.println(equalTest.toString());
 		
 	}
