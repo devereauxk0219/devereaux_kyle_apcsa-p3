@@ -40,7 +40,8 @@ public class Triples
 			{
 				for(int z = 0; x<nums.length; x++)
 				{
-				
+					
+					
 				}
 			}
 		}
@@ -56,7 +57,11 @@ public class Triples
 
 
 
-
+		if (Math.pow(x,2) + Math.pow(y,2) == Math.pow(z,2) && c%2 != 0
+				&& ((a%2 != 0 && b%2 == 0)||(a%2 != 0 && b%2 == 0))
+		{
+			
+		}
 
 
 		return output+"\n";
