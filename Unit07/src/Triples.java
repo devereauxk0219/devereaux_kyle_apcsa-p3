@@ -36,11 +36,10 @@ public class Triples
 		
 		for(int x = 0; x<nums.length; x++)
 		{
-			for(int y = 0; x<nums.length; x++)
+			for(int y = 0; x<nums.length; y++)
 			{
-				for(int z = 0; x<nums.length; x++)
+				for(int z = 0; x<nums.length; z++)
 				{
-					
 					
 				}
 			}
@@ -54,16 +53,23 @@ public class Triples
 	public String toString()
 	{
 		String output="";
-
-
-
-		if (Math.pow(x,2) + Math.pow(y,2) == Math.pow(z,2) && c%2 != 0
-				&& ((a%2 != 0 && b%2 == 0)||(a%2 != 0 && b%2 == 0))
+		
+		for(int x = 0; x<number; x++)
 		{
-			
+			for(int y = 0; x<number; y++)
+			{
+				for(int z = 0; x<number; z++)
+				{
+					if (Math.pow(x,2) + Math.pow(y,2) == Math.pow(z,2) && z%2 != 0
+							&& ((x%2 != 0 && y%2 == 0)||(x%2 != 0 && y%2 == 0))
+							&& greatestCommonFactor(x, y, z) == 1)
+					{
+						output += x + " "+ y + " " + z + "\n";
+					}
+				}
+			}
 		}
 
-
-		return output+"\n";
+		return output + "\n";
 	}
 }

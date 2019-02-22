@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 // www.apluscompsci.com
-//Name -  
+//Name - Kyle Devereaux
 
 import java.util.Scanner;
 import static java.lang.System.*;
@@ -10,17 +10,24 @@ public class RPSRunner
 	public static void main(String args[])
 	{
 		Scanner keyboard = new Scanner(System.in);
-		char response;
+		String response = "";
 		
-		//add in a do while loop after you get the basics up and running
+		RockPaperScissors game = new RockPaperScissors();
 		
-			String player = "";
-		
-			out.print("type in your prompt [R,P,S] :: ");
+		do {
+			out.print("Rock-Paper-Scissors - pick your weapon [R,P,S] :: ");
 			
-			//read in the player value
+			String player = keyboard.next();
+			
+			game.setPlayers(player);
+			out.println(game);
+			
+			out.println("Do you want to play again?");
+			response = keyboard.next();
+			
+		} while (response.equals("y"));
 		
-			RockPaperScissors game = new RockPaperScissors();		
+		
 	}
 }
 
