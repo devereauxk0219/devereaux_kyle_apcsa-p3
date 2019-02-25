@@ -38,7 +38,7 @@ public class TriangleFive
 		for (int j = amount; j>0; j--)
 		{
 			char letterTemp = letter;
-			// good don't change
+			
 			for (int i = amount; i>0; i--)
 			{
 				int tempAmount = i;
@@ -59,7 +59,6 @@ public class TriangleFive
 					letterTemp = (char)letterTemp;
 				}
 			}
-			//end of goodness
 			
 			//remover
 			output = output.substring(0, output.length() - (int)(1.5*counter + Math.pow(counter,2)/2));

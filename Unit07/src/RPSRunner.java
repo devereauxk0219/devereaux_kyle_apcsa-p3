@@ -15,7 +15,7 @@ public class RPSRunner
 		RockPaperScissors game = new RockPaperScissors();
 		
 		do {
-			out.print("Rock-Paper-Scissors - pick your weapon [R,P,S] :: ");
+			out.print("Rock-Paper-Scissors - pick your weapon [Rock,Paper,Scissors] :: ");
 			
 			String player = keyboard.next();
 			

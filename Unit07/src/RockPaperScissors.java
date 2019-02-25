@@ -14,7 +14,7 @@ public class RockPaperScissors
 	public RockPaperScissors()
 	{
 		setPlayers(" ");
-		compChoice = " ";
+		compChoice = "";
 	}
 
 	public RockPaperScissors(String player)
@@ -26,24 +26,28 @@ public class RockPaperScissors
 	public void setPlayers(String player)
 	{
 		playChoice = player;
-		compChoice = "";
+		
+		Random rand = new Random();
+		int compChoiceNum = rand.nextInt(3)+1;
+		
+		switch (compChoiceNum)
+		{
+			case 1: compChoice = "Rock";
+					break;
+			case 2: compChoice = "Paper";
+					break;
+			case 3: compChoice = "Scissors";
+					break;
+			default: compChoice = "";
+					break;
+		}
 	}
 
 	public String determineWinner()
 	{
 		String winner="";
 		
-		Random rand = new Random();
-		int compChoiceNum = rand.nextInt(2);
-		
-		switch (compChoiceNum)
-		{
-			case 0: compChoice = "Rock";
-			case 1: compChoice = "Paper";
-			case 2: compChoice = "Scissors";
-		}
-		
-		if (playChoice.equals("R"))
+		if (playChoice.equals("Rock"))
 		{
 			if (compChoice.equals("Paper"))
 			{
@@ -54,7 +58,7 @@ public class RockPaperScissors
 				winner = "player";
 			}
 		}
-		else if (playChoice.equals("P"))
+		else if (playChoice.equals("Paper"))
 		{
 			if (compChoice.equals("Scissors"))
 			{
@@ -65,7 +69,7 @@ public class RockPaperScissors
 				winner = "player";
 			}
 		}
-		else if (playChoice.equals("S"))
+		else if (playChoice.equals("Scissors"))
 		{
 			if (compChoice.equals("Rock"))
 			{
@@ -88,15 +92,15 @@ public class RockPaperScissors
 		{
 			output += "player had " + playChoice + "\ncomputer had " + compChoice + "\n!Player wins <<";
 			
-			if (playChoice.equals("R"))
+			if (playChoice.equals("Rock"))
 			{
 				output += "Rock Breaks " + compChoice + ">>!\n";
 			}
-			else if (playChoice.equals("P"))
+			else if (playChoice.equals("Paper"))
 			{
 				output += "Paper Covers " + compChoice + ">>!\n";
 			}
-			else if (playChoice.equals("S"))
+			else if (playChoice.equals("Scissors"))
 			{
 				output += "Scissors Cuts " + compChoice + ">>!\n";
 			}
