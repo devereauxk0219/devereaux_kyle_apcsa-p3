@@ -81,24 +81,20 @@ public class Triples
 		return 1;**/
 		
 	}
-
+	
 	public String toString()
 	{
 		String output="";
-		number = 110;
-		out.println(number);
-		for(int x = 0; x<number; x++)
+		
+		for(int x = 1; x<number; x++)
 		{
-			out.print(x);
-			for(int y = 0; x<number; y++)
+			for(int y = 1; y<number; y++)
 			{
-				out.print(y);
-				for(int z = 0; x<number; z++)
+				for(int z = 1; z<number; z++)
 				{
-					out.print(z);
 					if ((Math.pow(x,2) + Math.pow(y,2) == Math.pow(z,2))
 							&& (z%2 != 0)
-							&& ((x%2 != 0 && y%2 == 0)||(x%2 != 0 && y%2 == 0))
+							&& ((x%2 != 0 && y%2 == 0)||(x%2 == 0 && y%2 != 0))
 							&& (greatestCommonFactor(x, y, z) <= 1))
 					{
 						output += x + " "+ y + " " + z + "\n";
@@ -106,7 +102,6 @@ public class Triples
 				}
 			}
 		}
-
 		return output;
 	}
 }
