@@ -88,9 +88,9 @@ public class Triples
 		
 		for(int x = 1; x<number; x++)
 		{
-			for(int y = 1; y<number; y++)
+			for(int y = x; y<number; y++)
 			{
-				for(int z = 1; z<number; z++)
+				for(int z = y; z<number; z++)
 				{
 					if ((Math.pow(x,2) + Math.pow(y,2) == Math.pow(z,2))
 							&& (z%2 != 0)
