@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Kyle Devereaux
+//Date - 3/1/2019
 
 import java.util.ArrayList;
 

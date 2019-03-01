@@ -1,9 +1,9 @@
-import java.util.ArrayList;
-
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Kyle Devereaux
+//Date - 3/1/2019
+
+import java.util.ArrayList;
 
 public class SumFirstRunner
 {
@@ -24,8 +24,6 @@ public class SumFirstRunner
 			test.add(array[i]);
 		}
 		System.out.println(ListSumFirst.go(test));
-		
-		//more and more test cases.....
 		
 	}
 }
