@@ -38,6 +38,7 @@ public class Card {
 		rank = "";
 		pointValue = 0;
 	}
+	
 	public Card(String cardRank, String cardSuit, int cardPointValue) {
 
 		suit = cardSuit;

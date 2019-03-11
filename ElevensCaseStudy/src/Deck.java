@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -80,7 +81,7 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		
 	}
 
 	/**
@@ -95,11 +96,13 @@ public class Deck {
 			Card output = cards[size()-1];
 			
 			Card[] cardsReplace = new Card[size()-1];
-			for (int i = 0; i<size()-2; i++)
+			for (int i = 0; i<size()-1; i++)
 			{
 				cardsReplace[i] = cards[i];
 			}
 			cards = cardsReplace;
+			
+			size --;
 			
 			return output;
 		}
@@ -112,10 +115,10 @@ public class Deck {
 	 */
 	@Override
 	public String toString() {
-		String rtn = "size = " + size + "\nUndealt cards: \n";
+		String rtn = "\nsize = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
+			rtn = rtn + cards[k].toString();
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -126,12 +129,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = size() - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
+		for (int k = size - 1; k >= size; k--) {
+			rtn = rtn + cards[k].toString();
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - size()) % 2 == 0) {
+			if ((k - size) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}

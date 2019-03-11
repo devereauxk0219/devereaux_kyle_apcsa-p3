@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -7,7 +9,7 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 3;
 
 	/**
 	 * The number of values to shuffle.
@@ -26,7 +28,7 @@ public class Shuffler {
 			values1[i] = i;
 			}
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			perfectShuffle(values1);
+			values1 = perfectShuffle(values1);
 			System.out.print("  " + j + ":");
 			for (int k = 0; k < values1.length; k++) {
 				System.out.print(" " + values1[k]);
@@ -59,7 +61,7 @@ public class Shuffler {
 	 * the cards in one half with the cards in the other.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
-	public static void perfectShuffle(int[] values) {
+	public static int[] perfectShuffle(int[] values) {
 		int[] firstHalf = new int[values.length/2];
 		int[] secondHalf = new int[values.length/2];
 		
@@ -84,8 +86,8 @@ public class Shuffler {
 				output[k] = secondHalf[k-secondHalf.length];
 			}
 		}
+		return output;
 		
-		System.out.println(output);
 	}
 
 	/**
