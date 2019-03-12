@@ -63,6 +63,8 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static int[] perfectShuffle(int[] values) {
+		//both of the shuffle methods started as void methods. I changed them to return type int[].
+		//this is so the main method can print the outputs as intended.
 		int[] firstHalf = new int[values.length/2];
 		int[] secondHalf = new int[values.length/2];
 		
