@@ -17,6 +17,14 @@ public class DownRunner
 		}
 		System.out.println(ListDown.go(test));
 		
-		//one test cases used for simplicity of code
+		test = new ArrayList<Integer>();
+		tempArray = new int[] {10,9,8,7,6,5,4,3,2,1,-99};
+		for (int i = 0; i<tempArray.length; i++)
+		{
+			test.add(tempArray[i]);
+		}
+		System.out.println(ListDown.go(test));
+		
+		//first two test cases used for simplicity
 	}
 }

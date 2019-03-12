@@ -17,6 +17,14 @@ public class OddToEvenRunner
 		}
 		System.out.println(ListOddToEven.go(test));
 		
-		//one test cases used for simplicity of code
+		test = new ArrayList<Integer>();
+		tempArray = new int[] {11,9,8,7,6,5,4,3,2,1,-99,7};
+		for (int i = 0; i<tempArray.length; i++)
+		{
+			test.add(tempArray[i]);
+		}
+		System.out.println(ListOddToEven.go(test));
+		
+		//first two test cases used for simplicity
 	}
 }
