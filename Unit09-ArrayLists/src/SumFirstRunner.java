@@ -24,6 +24,6 @@ public class SumFirstRunner
 			test.add(array[i]);
 		}
 		System.out.println(ListSumFirst.go(test));
-		
+		//first two test cases used
 	}
 }

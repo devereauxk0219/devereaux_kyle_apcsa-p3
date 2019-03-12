@@ -17,6 +17,6 @@ public class OddToEvenRunner
 		}
 		System.out.println(ListOddToEven.go(test));
 		
-		//add the other test cases......
+		//one test cases used for simplicity of code
 	}
 }

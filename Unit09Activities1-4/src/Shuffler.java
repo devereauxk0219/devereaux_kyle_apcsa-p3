@@ -98,6 +98,7 @@ public class Shuffler {
 	 */
 	public static int[] selectionShuffle(int[] values) {
 		//both of the shuffle methods started as void methods. I changed them to return type int[].
+		//this is so the main method can print the outputs as intended.
 		int[] output = new int[values.length];
 		int[] tempValues = values;
 		int outputCounter = 0;

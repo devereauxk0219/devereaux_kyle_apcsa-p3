@@ -14,7 +14,8 @@ public class Deck {
 	 * cards contains all the cards in the deck.
 	 */
 	private Card[] cards; // changed from private List<Card> cards;
-
+	
+	private Card[] dealt; // added to keep track of dealt cards (for printing purposes).
 	/**
 	 * size is the number of not-yet-dealt cards.
 	 * Cards are dealt from the top (highest index) down.
@@ -32,6 +33,8 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
+		
+		dealt = new Card[0];
 		
 		cards = new Card[ranks.length*suits.length];
 		int cardsPlacement = 0;
@@ -51,6 +54,8 @@ public class Deck {
 		{
 			size = cards.length;
 		}
+		
+		shuffle();
 		
 	}
 
@@ -132,6 +137,15 @@ public class Deck {
 			
 			size --;
 			
+			//adds drawn card to private Card[] dealt.
+			Card[] dealtNew = new Card[dealt.length+1];
+			for (int j = 0; j<dealt.length; j++)
+			{
+				dealtNew[j] = dealt[j];
+			}
+			dealtNew[dealtNew.length-1] = output;
+			dealt = dealtNew;
+			
 			return output;
 		}
 		else return null;
@@ -155,14 +169,15 @@ public class Deck {
 				rtn = rtn + "\n";
 			}
 		}
-
+		
+		//modified to use the dealt instance variable
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = size - 1; k >= size; k--) {
-			rtn = rtn + cards[k].toString();
-			if (k != size) {
+		for (int k = 0; k<dealt.length; k++) {
+			rtn = rtn + dealt[k].toString();
+			if (k != dealt.length) {
 				rtn = rtn + ", ";
 			}
-			if ((k - size) % 2 == 0) {
+			if ((k - dealt.length) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}

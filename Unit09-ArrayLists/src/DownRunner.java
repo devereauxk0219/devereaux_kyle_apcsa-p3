@@ -17,6 +17,6 @@ public class DownRunner
 		}
 		System.out.println(ListDown.go(test));
 		
-		//add the other test cases......
+		//one test cases used for simplicity of code
 	}
 }
