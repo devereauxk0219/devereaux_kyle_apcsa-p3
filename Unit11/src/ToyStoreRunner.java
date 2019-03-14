@@ -15,7 +15,8 @@ public class ToyStoreRunner
 		test.loadToys("sorry bat sorry sorry sorry train teddy teddy ball ball");
 		out.println(test);
 		test.sortToysByCount();
+		out.println("Sorted by frequency:");
 		out.println(test);
-		out.println(test.getMostFrequentToy());
+		out.println("max == " + test.getMostFrequentToy());
 	}
 }

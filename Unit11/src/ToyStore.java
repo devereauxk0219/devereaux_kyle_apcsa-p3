@@ -24,11 +24,27 @@ public class ToyStore
 	{
 		Scanner reader = new Scanner(toys);
 		
-		for (int i = 0; i<toys.length(); i++)
+		while (reader.hasNext())
 		{
 			String toyName = reader.next();
-			Toy toyTemp = new Toy(toyName);
-			toyList.add(toyTemp);
+			
+			boolean changed = false;
+			for(int i = 0; i<toyList.size(); i++)
+			{
+				if (stock.size() > 0 && toyName.equals(toyList.get(i).getName()))
+				{
+					int tempStock = stock.get(i) + 1;
+					stock.set(i, tempStock);
+					changed = true;
+				}
+			}
+			
+			if(!changed)
+			{
+				Toy toyTemp = new Toy(toyName);
+				toyList.add(toyTemp);
+				stock.add(1);
+			}
 		}
 		
 	}
@@ -54,7 +70,32 @@ public class ToyStore
   
   	public void sortToysByCount()
   	{
+  		ArrayList<Toy> toyListOut = new ArrayList<>();
+  		ArrayList<Integer> stockOut = new ArrayList<>();
   		
+  		for (int i = 0; i<toyList.size(); i++)
+  		{
+  			int largest = 0;
+  			int largestIndex = 0;
+  			for (int j = 0; j<stock.size(); j++)
+  			{
+  				if (stock.get(j) > largest)
+  				{
+  					largest = stock.get(j);
+  					largestIndex = j;
+  				}
+  			}
+  			
+  			toyListOut.add(toyList.get(largestIndex));
+  			stockOut.add(stock.get(largestIndex));
+  			
+  			toyList.set(largestIndex, null);
+  			stock.set(largestIndex, -1);
+
+  		}
+  		
+  		toyList = toyListOut;
+  		stock = stockOut;
   	}
   	  
 	public String toString()
@@ -62,7 +103,7 @@ public class ToyStore
 		String[] output = new String[toyList.size()];
 		for (int i = 0; i<output.length; i++)
 		{
-			output[i] = toyList.get(i).toString();
+			output[i] = toyList.get(i).getName() + " " + stock.get(i);
 		}
 		return Arrays.toString(output);
 	}
