@@ -7,17 +7,17 @@ import static java.lang.System.*;
 public class Toy
 {
 	private String name;
-	private int count;
+	private static int count;
 
 	public Toy()
 	{
-		setCount(count++);
+		setCount(count+1);
 		setName("");
 	}
 
 	public Toy( String nm )
 	{
-		setCount(count++);
+		setCount(count+1);
 		setName(nm);
 	}
 	

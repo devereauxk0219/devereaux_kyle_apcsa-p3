@@ -1,15 +1,13 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import static java.lang.System.*;
 
 public class RationalRunner
 {
-	public static void main( String args[] )
+	public static void main( String args[] ) throws CloneNotSupportedException
 	{
-		/*uncomment once Rational class is built
-		 *
 		Rational test = new Rational();
 		out.println("test = " + test);
 
@@ -18,7 +16,7 @@ public class RationalRunner
 
 		out.println("test.equals(newOne) = "+test.equals(newOne));
 
-		newOne = (Rational)test.clone();
+		newOne = (Rational) test.clone();
 		out.println("\n\nnewOne after test.clone() = "+newOne);
 		out.println("test.equals(newOne) = "+test.equals(newOne));
 		
@@ -64,7 +62,6 @@ public class RationalRunner
 		rTwo.setRational(2,8);
 		out.println("\n\n1/6.equals(2/8) = "+rOne.equals(rTwo));				
 		rOne.add(rTwo);
-		out.println("\n\n1/6.add(2/8) = "+ rOne);		
-		*/	
+		out.println("\n\n1/6.add(2/8) = "+ rOne);
 	}
 }

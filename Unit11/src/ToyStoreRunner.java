@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -11,6 +11,11 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-
+		ToyStore test = new ToyStore();
+		test.loadToys("sorry bat sorry sorry sorry train teddy teddy ball ball");
+		out.println(test);
+		test.sortToysByCount();
+		out.println(test);
+		out.println(test.getMostFrequentToy());
 	}
 }

@@ -11,8 +11,7 @@ public class ToyRunner
 		Toy test = new Toy("sorry");
 		out.println(test.getName());
 		out.println(test.getCount());
-		out.println(test);
-		out.println();
+		out.println(test + "\n");
 		
 		Toy test2 = new Toy("ji goe");
 		out.println(test2.getName());
