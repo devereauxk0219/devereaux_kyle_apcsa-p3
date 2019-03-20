@@ -26,18 +26,18 @@ public class WordRunner
 		
 		ArrayList<Word> output = new ArrayList<Word>();
 		int j = 0;
-		while(output.size()<size-1)
+		while(output.size()<size)
 		{
 			boolean smallest = true;
 			for (int k = 0; k<size; k++)
 			{
-				if (words.get(j) == null || words.get(k) == null || words.get(j).compareTo(words.get(k)) > 0)
+				if (words.get(j) != null && words.get(k) != null && words.get(j).compareTo(words.get(k)) > 0)
 				{
 					smallest = false;
 				}
 			}
 			
-			if(smallest)
+			if(smallest && words.get(j) != null)
 			{
 				output.add(words.get(j));
 				words.set(j, null);

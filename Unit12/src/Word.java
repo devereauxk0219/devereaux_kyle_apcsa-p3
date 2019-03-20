@@ -17,11 +17,11 @@ public class Word implements Comparable<Word>
 	{		
 		if (rhs.word.length() < word.length())
 		{
-			return -1;
+			return 1;
 		}
 		else if (rhs.word.length() > word.length())
 		{
-			return 1;
+			return -1;
 		}
 		else if(rhs.word.length() == word.length())
 		{
