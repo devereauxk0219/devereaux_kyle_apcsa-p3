@@ -25,7 +25,7 @@ public class RecursionFunThree
 		
 		if(number>0)
 		{
-			if(test == 3 && pass>10)
+			if(test == 3 && pass>0)
 			{
 				return luckyThrees(pass) + 1;
 			}
