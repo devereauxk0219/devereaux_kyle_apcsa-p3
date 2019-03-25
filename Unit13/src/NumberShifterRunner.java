@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +12,13 @@ public class NumberShifterRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
-		//add test cases
+		
+		out.println(Arrays.toString(NumberShifter.makeLucky7Array(10)));
+		
+		out.println(Arrays.toString(NumberShifter.makeLucky7Array(15)));
+		
+		out.println(Arrays.toString(NumberShifter.makeLucky7Array(22)));
+		
 	}
 }
 
