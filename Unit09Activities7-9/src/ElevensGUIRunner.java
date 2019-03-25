@@ -9,6 +9,10 @@ public class ElevensGUIRunner {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
+		
+		//to run properly, must use my Board, Card, Deck, ElevensBoard, and GUI since I
+		//made some minor changes to these classes for simplicity.
+		
 		Board board = new ElevensBoard();
 		CardGameGUI gui = new CardGameGUI(board);
 		gui.displayGame();
