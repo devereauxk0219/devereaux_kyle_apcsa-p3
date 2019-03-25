@@ -120,7 +120,8 @@ public abstract class Board {
 		List<Integer> selected = new ArrayList<Integer>();
 		for (int k = 0; k < cards.length; k++) {
 			if (cards[k] != null) {
-				selected.add(new Integer(k));
+				selected.add(cards[k].pointValue());
+				//selected.add(new Integer(k));
 			}
 		}
 		return selected;

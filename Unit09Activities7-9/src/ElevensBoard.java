@@ -27,7 +27,9 @@ public class ElevensBoard extends Board {
 	 * The values of the cards for this game to be sent to the deck.
 	 */
 	private static final int[] POINT_VALUES =
-		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0};
+		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+	// I changed the jack, queen, king values to ensure that
+	//they are differentiated properly.
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -53,7 +55,15 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() == 3 && containsJQK(selectedCards))
+		{
+			return true;
+		}
+		else if (selectedCards.size() == 2 && containsPairSum11(selectedCards))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -66,7 +76,7 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		return (containsPairSum11(cardIndexes()) || containsJQK(cardIndexes()));
 	}
 
 	/**
@@ -78,7 +88,21 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		
+		for (int i = 0; i<selectedCards.size(); i++)
+		{
+			for (int j = 0; j<selectedCards.size(); j++)
+			{
+				System.out.println(selectedCards);
+				System.out.println("Testing: " + selectedCards.get(i) + " " + selectedCards.get(j));
+				if (i != j && selectedCards.get(i) + selectedCards.get(j) == 11
+						&& selectedCards.get(i) <= 10 && selectedCards.get(j) <= 10)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -90,6 +114,27 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		
+		for (int i = 0; i<selectedCards.size(); i++)
+		{
+			if (selectedCards.get(i) == 11)
+			{
+				for (int j = 0; j<selectedCards.size(); j++)
+				{
+					if (selectedCards.get(j) == 12)
+					{
+						for (int k = 0; k<selectedCards.size(); k++)
+						{
+							if (selectedCards.get(k) == 13)
+							{
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+		
 	}
 }

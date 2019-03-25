@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class provides a GUI for solitaire games related to Elevens.
@@ -283,13 +284,18 @@ public class CardGameGUI extends JFrame implements ActionListener {
 		if (e.getSource().equals(replaceButton)) {
 			// Gather all the selected cards.
 			List<Integer> selection = new ArrayList<Integer>();
+			List<Integer> selection1 = new ArrayList<Integer>();
 			for (int k = 0; k < board.size(); k++) {
 				if (selections[k]) {
-					selection.add(new Integer(k));
+					selection.add(board.cardAt(k).pointValue());
+					selection1.add(k);
+					//selection.add(new Integer(k));
 				}
 			}
 			// Make sure that the selected cards represent a legal replacement.
 			if (!board.isLegal(selection)) {
+				System.out.println("false");
+				System.out.println(selection);
 				signalError();
 				return;
 			}
@@ -297,7 +303,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
 				selections[k] = false;
 			}
 			// Do the replace.
-			board.replaceSelectedCards(selection);
+			board.replaceSelectedCards(selection1);
 			if (board.isEmpty()) {
 				signalWin();
 			} else if (!board.anotherPlayIsPossible()) {
