@@ -59,6 +59,7 @@ public class Deck {
 		
 	}
 
+
 	/**
 	 * Determines if this deck is empty (no undealt cards).
 	 * @return true if this deck is empty, false otherwise.

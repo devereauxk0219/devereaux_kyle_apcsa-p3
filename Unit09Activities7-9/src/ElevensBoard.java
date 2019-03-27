@@ -27,9 +27,7 @@ public class ElevensBoard extends Board {
 	 * The values of the cards for this game to be sent to the deck.
 	 */
 	private static final int[] POINT_VALUES =
-		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-	// I changed the jack, queen, king values to ensure that
-	//they are differentiated properly.
+		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0};
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -76,7 +74,15 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		return (containsPairSum11(cardIndexes()) || containsJQK(cardIndexes()));
+		
+		ArrayList<Integer> test = new ArrayList<Integer>();
+		
+		for(int i = 0; i<size(); i++)
+		{
+			test.add(i);
+		}
+		
+		return containsPairSum11(test) || containsJQK(test);
 	}
 
 	/**
@@ -89,14 +95,28 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		
-		for (int i = 0; i<selectedCards.size(); i++)
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		
+		if (selectedCards.size() == 2)
 		{
-			for (int j = 0; j<selectedCards.size(); j++)
+			for (int n = 0; n<selectedCards.size(); n++)
 			{
-				System.out.println(selectedCards);
-				System.out.println("Testing: " + selectedCards.get(i) + " " + selectedCards.get(j));
-				if (i != j && selectedCards.get(i) + selectedCards.get(j) == 11
-						&& selectedCards.get(i) <= 10 && selectedCards.get(j) <= 10)
+				values.add(cardAt(selectedCards.get(n)).pointValue());
+			}
+		}
+		else
+		{
+			for (int i = 0; i<selectedCards.size(); i++)
+			{
+				values.add(cardAt(i).pointValue());
+			}
+		}
+		
+		for (int i = 0; i<values.size(); i++)
+		{
+			for (int j = 0; j<values.size(); j++)
+			{
+				if (i != j && values.get(i) + values.get(j) == 11)
 				{
 					return true;
 				}
@@ -115,17 +135,34 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		
-		for (int i = 0; i<selectedCards.size(); i++)
+		ArrayList<String> ranks = new ArrayList<String>();
+		
+		if (selectedCards.size() == 3)
 		{
-			if (selectedCards.get(i) == 11)
+			for (int n = 0; n<selectedCards.size(); n++)
 			{
-				for (int j = 0; j<selectedCards.size(); j++)
+				ranks.add(cardAt(selectedCards.get(n)).rank());
+			}
+		}
+		else
+		{
+			for (int i = 0; i<selectedCards.size(); i++)
+			{
+				ranks.add(cardAt(i).rank());
+			}
+		}
+		
+		for (int j = 0; j<ranks.size(); j++)
+		{
+			if (ranks.get(j).equals("jack"))
+			{
+				for (int k = 0; k<ranks.size(); k++)
 				{
-					if (selectedCards.get(j) == 12)
+					if (ranks.get(k).equals("queen"))
 					{
-						for (int k = 0; k<selectedCards.size(); k++)
+						for (int m = 0; m<ranks.size(); m++)
 						{
-							if (selectedCards.get(k) == 13)
+							if (ranks.get(m).equals("king"))
 							{
 								return true;
 							}
@@ -134,6 +171,7 @@ public class ElevensBoard extends Board {
 				}
 			}
 		}
+		
 		return false;
 		
 	}
