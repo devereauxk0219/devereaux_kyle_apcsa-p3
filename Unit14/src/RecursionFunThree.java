@@ -1,8 +1,8 @@
 //© A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
+//Name - Kyle Devereaux
+//Date - 3/28/2019
+//Class - APCSA p3
+//Lab  - Lucky Threes
 
 import static java.lang.System.*;
 

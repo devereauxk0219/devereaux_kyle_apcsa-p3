@@ -8,7 +8,7 @@ public class Recursion234Runner
 {
 	public static void main(String args[])
 	{
-		
+		//runner code for RecursionFunOne class
 		out.println(RecursionFunOne.countOddDigits(4532));
 		out.println(RecursionFunOne.countOddDigits(11145322));
 		out.println(RecursionFunOne.countOddDigits(224532714));
@@ -16,6 +16,7 @@ public class Recursion234Runner
 		out.println(RecursionFunOne.countOddDigits(13579));
 		out.println();
 		
+		//runner code for RecursionFunThree class (Lucky Threes)
 		out.println(RecursionFunThree.luckyThrees(3));
 		out.println(RecursionFunThree.luckyThrees(31332));
 		out.println(RecursionFunThree.luckyThrees(134523));

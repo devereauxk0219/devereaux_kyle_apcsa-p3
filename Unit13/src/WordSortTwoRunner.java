@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,7 +18,11 @@ public class WordSortTwoRunner
 		for(int i = 0; i<size; i++)
 		{
 			String sentence = file.nextLine();
-			//instantiate a new WordSort
+			WordSortTwo temp = new WordSortTwo(sentence);
+			out.println(temp);
+			temp.sort();
+			out.println(temp);
 		}
+		
 	}
 }
