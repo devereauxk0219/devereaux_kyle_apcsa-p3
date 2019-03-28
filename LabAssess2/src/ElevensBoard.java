@@ -92,7 +92,7 @@ public class ElevensBoard extends Board {
 		
 		ArrayList<Integer> values = new ArrayList<Integer>();
 		
-		if (selectedCards.size() == 2)
+		if (selectedCards.size() <= 9)
 		{
 			for (int n = 0; n<selectedCards.size(); n++)
 			{
@@ -132,7 +132,7 @@ public class ElevensBoard extends Board {
 		
 		ArrayList<String> ranks = new ArrayList<String>();
 		
-		if (selectedCards.size() == 3)
+		if (selectedCards.size() <= 9)
 		{
 			for (int n = 0; n<selectedCards.size(); n++)
 			{
