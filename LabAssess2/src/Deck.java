@@ -86,15 +86,15 @@ public class Deck {
 	 */
 	public void shuffle() {
 		
-		Random rand = new Random();
-		
-		ArrayList<Card> output = new ArrayList<Card>();
-		
+		//combines dealt cards into cards
 		while (dealt.size() > 0)
 		{
 			cards.add(dealt.get(0));
 			dealt.remove(0);
 		}
+		
+		ArrayList<Card> output = new ArrayList<Card>();
+		Random rand = new Random();
 		
 		while (cards.size() > 0)
 		{

@@ -74,16 +74,6 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/*
-		ArrayList<Integer> test = new ArrayList<Integer>();
-		
-		for(int i = 0; i<size(); i++)
-		{
-			test.add(i);
-		}
-		
-		return containsPairSum11(test) || containsJQK(test);
-		*/
 		
 		List<Integer> test = cardIndexes();
 		
