@@ -42,21 +42,30 @@ public class WordSearch
     	return false;
     }
 
-	public boolean checkRight(String w, int r, int c) throws ArrayIndexOutOfBoundsException
+	public boolean checkRight(String w, int r, int c)
 	{
-		for (int i = 0; i<w.length(); i++)
-		{
-			if (w.charAt(i) != m[r][c+i].charAt(0))
-			{
-				return false;
-			}
-		}
+		try {
 			
-		return true;
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r][c+i].charAt(0))
+				{
+					return false;
+				}
+			}
+				
+			return true;
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
-	public boolean checkLeft(String w, int r, int c) throws ArrayIndexOutOfBoundsException
+	public boolean checkLeft(String w, int r, int c)
 	{
+		try {
+			
 		for (int i = 0; i<w.length(); i++)
 		{
 			if (w.charAt(i) != m[r][c-i].charAt(0))
@@ -66,52 +75,135 @@ public class WordSearch
 		}
 		
 		return true;
+		
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
-	public boolean checkUp(String w, int r, int c) throws ArrayIndexOutOfBoundsException
+	public boolean checkUp(String w, int r, int c)
 	{
-		for (int i = 0; i<w.length(); i++)
-		{
-			if (w.charAt(i) != m[c][r-i].charAt(0))
-			{
-				return false;
-			}
-		}
+		
+		try {
 			
-		return true;
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r-i][c].charAt(0))
+				{
+					return false;
+				}
+			}
+				
+			return true;
+		
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
-	public boolean checkDown(String w, int r, int c) throws ArrayIndexOutOfBoundsException
+	public boolean checkDown(String w, int r, int c)
 	{
-		for (int i = 0; i<w.length(); i++)
-		{
-			if (w.charAt(i) != m[c][r+i].charAt(0))
-			{
-				return false;
-			}
-		}
+		
+		try {
 			
-		return true;
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r+i][c].charAt(0))
+				{
+					return false;
+				}
+			}
+				
+			return true;
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
 	public boolean checkDiagUpRight(String w, int r, int c)
 	{
-		return false;
+		
+		try {
+			
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r-i][c+i].charAt(0))
+				{
+					return false;
+				}
+			}
+			
+			return true;
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
 	public boolean checkDiagUpLeft(String w, int r, int c)
 	{
-		return false;
+		
+		try {
+			
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r-i][c-i].charAt(0))
+				{
+					return false;
+				}
+			}
+			
+			return true;
+		
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
 	public boolean checkDiagDownLeft(String w, int r, int c)
 	{
-		return false;
+		try {
+			
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r+i][c-i].charAt(0))
+				{
+					return false;
+				}
+			}
+			
+			return true;
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
 	public boolean checkDiagDownRight(String w, int r, int c)
 	{
-		return false;
+		try {
+			
+			for (int i = 0; i<w.length(); i++)
+			{
+				if (w.charAt(i) != m[r+i][c+i].charAt(0))
+				{
+					return false;
+				}
+			}
+			
+			return true;
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
+		
 	}
 
     public String toString()

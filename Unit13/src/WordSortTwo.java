@@ -28,24 +28,32 @@ public class WordSortTwo
 		//Arrays.sort(wordRay);
 		
 		String[] output = new String[wordRay.length];
-	
+		
 		for (int i = 0; i<wordRay.length; i++)
 		{
-			String smallest = wordRay[0];
-			int smallestIndex = 0;
-			for (int j = 0; j<wordRay.length; j++)
+			String smallest = "";
+			int smallestIndex = 0 ;
+			for (int m = 0; m<wordRay.length; m++)
 			{
-				if (!wordRay[j].equals("null") && wordRay[j].compareTo(smallest)<0)
+				if (wordRay[m] != "-1")
 				{
-					smallest = wordRay[j];
-					smallestIndex = i;
+					smallest = wordRay[m];
+					smallestIndex = m;
 				}
 			}
 			
-			wordRay[smallestIndex] = "null";
+			for (int j = 0; j<wordRay.length; j++)
+			{
+				if (!wordRay[j].equals("-1") && wordRay[j].compareTo(smallest) < 0)
+				{
+					smallest = wordRay[j];
+					smallestIndex = j;
+				}
+			}
+			
 			output[i] = smallest;
+			wordRay[smallestIndex] = "-1";
 		}
-		
 		wordRay = output;
 	}
 
