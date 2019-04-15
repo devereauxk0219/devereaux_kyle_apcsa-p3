@@ -19,17 +19,40 @@ public class Ball extends Block
 
 	//add the other Ball constructors
 	
+	public Ball(int x, int y)
+	{
+		super(x,y);
+		xSpeed = 3;
+		ySpeed = 1;
+	}
 	
+	public Ball(int x, int y, int w, int h)
+	{
+		super(x,y, w, h);
+		xSpeed = 3;
+		ySpeed = 1;
+	}
 	
+	public Ball(int x, int y, int w, int h, Color c)
+	{
+		super(x,y, w, h, c);
+		xSpeed = 3;
+		ySpeed = 1;
+	}
 	
+	public Ball(int x, int y, int w, int h, int xSpeed, int ySpeed)
+	{
+		super(x,y, w, h);
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public Ball(int x, int y, int w, int h, Color c, int xSpeed, int ySpeed)
+	{
+		super(x,y, w, h, c);
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
+	}
 	   
    //add the set methods
 	public void setXSpeed(int x)
@@ -46,11 +69,14 @@ public class Ball extends Block
    {
    	//draw a white ball at old ball location
 
+	  draw(window, Color.white);
+      setX(getX() + xSpeed);
+      
+      //setY
+      setY(getY() + ySpeed);
 
-      setX(getX()+xSpeed);
-		//setY
-
-		//draw the ball at its new location
+      //draw the ball at its new location
+      draw(window);
    }
    
 	public boolean equals(Object obj)

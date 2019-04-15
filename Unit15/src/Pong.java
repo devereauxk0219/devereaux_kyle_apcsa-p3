@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Kyle Devereaux
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,17 +20,24 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
-
+	private int leftScore;
+	private int rightScore;
+	
+	private boolean hitLeftPaddle = false;
+	private boolean hitRightPaddle = false;
 
 	public Pong()
 	{
 		//set up all variables related to the game
 
-
+		ball = new Ball(10, 100, 10, 10, Color.blue, 2, 1);
+		leftPaddle = new Paddle(20, 200, 10, 40, Color.orange, 2);
+		rightPaddle = new Paddle(760, 200, 10, 40, Color.orange, 2);
 
 
 		keys = new boolean[4];
-
+		leftScore = 0;
+		rightScore = 0;
     
     	setBackground(Color.WHITE);
 		setVisible(true);
@@ -69,10 +76,21 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 		}
-
+		
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.fillRect(440, 520, 80, 80);
+		graphToBack.fillRect(640, 520, 100, 100);
+		graphToBack.fillRect(140, 520, 100, 100);
+		
+		
+		graphToBack.setColor(Color.red);
+		
+		graphToBack.drawString("right score = " + rightScore, 400, 540);
+		//FINISH THIS
+		//graph
 		
 		//see if the ball hits the top or bottom wall 
-
+		
 
 
 
@@ -87,10 +105,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if the paddles need to be moved
-
-
-
-
 
 
 
