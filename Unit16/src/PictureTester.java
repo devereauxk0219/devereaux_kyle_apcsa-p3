@@ -17,6 +17,54 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.onlyBlue();
+    beach.explore();
+  }
+  
+  public static void testKeepOnlyRed()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.onlyRed();
+    beach.explore();
+  }
+  
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.onlyGreen();
+    beach.explore();
+  }
+  
+  public static void testNegate()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.negate();
+    beach.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.grayscale();
+    beach.explore();
+  }
+  
+  public static void testFixUnderwater()
+  {
+    Picture water = new Picture("water.jpg");
+    water.explore();
+    water.fixUnderwater();
+    water.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -35,18 +83,52 @@ public class PictureTester
     temple.explore();
   }
   
-  /** Method to test the collage method */
+  public static void testMirrorArms()
+  {
+    Picture arms = new Picture("snowman.jpg");
+    arms.explore();
+    arms.mirrorArms();
+    arms.explore();
+  }
+  /*
+  public static void testMirrorGull()
+  {
+    Picture gull = new Picture("seagull.jpg");
+    gull.explore();
+    gull.mirrorGull();
+    gull.explore();
+  }
+  
+  public static void testMirrorDiagonal()
+  {
+    Picture diagonal = new Picture("diagonal.jpg");
+    diagonal.explore();
+    diagonal.mirrorDiagonal();
+    diagonal.explore();
+  }
+  
+  /** Method to test the collage method 
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
+    canvas.explore();
     canvas.createCollage();
     canvas.explore();
+  }
+  
+  public void testCopy()//not sure which file to use
+  {
+	  Picture canvas = new Picture("640x480.jpg");
+	  canvas.explore();
+	  canvas.copy();
+	  canvas.explore();
   }
   
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("swan.jpg");
+    swan.explore();
     swan.edgeDetection(10);
     swan.explore();
   }
@@ -58,21 +140,25 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+	  
+	  
+    //*testZeroBlue();
     //testKeepOnlyBlue();
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
-    //testMirrorVertical();
-    //testMirrorTemple();
-    //testMirrorArms();
+    //*testKeepOnlyRed();
+    //*testKeepOnlyGreen();
+    //*testNegate();
+    //*testGrayscale();
+    //*testFixUnderwater();
+    //*testMirrorVertical();
+    //*testMirrorTemple();
+    testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-    //testCollage();
-    //testCopy();
-    //testEdgeDetection();
+    //*testCollage();
+    //*testCopy();
+    //*testEdgeDetection();        // stops here?
+	  
+	  
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

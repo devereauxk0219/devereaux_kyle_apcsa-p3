@@ -98,6 +98,88 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void onlyBlue()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setRed(0);
+	        pixelObj.setGreen(0);
+	      }
+	    }
+  }
+  
+  public void onlyRed()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setBlue(0);
+	        pixelObj.setGreen(0);
+	      }
+	    }
+  }
+  
+  public void onlyGreen()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setRed(0);
+	        pixelObj.setBlue(0);
+	      }
+	    }
+  }
+  
+  public void negate()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setRed(255-pixelObj.getRed());
+	        pixelObj.setBlue(255-pixelObj.getBlue());
+	        pixelObj.setGreen(255-pixelObj.getGreen());
+	      }
+	    }
+  }
+  
+  public void grayscale()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	    	int average = (pixelObj.getBlue() + pixelObj.getRed() + pixelObj.getGreen())/3;
+	        pixelObj.setRed(average);
+	        pixelObj.setBlue(average);
+	        pixelObj.setGreen(average);
+	      }
+	    }
+  }
+  
+  public void fixUnderwater()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setRed(pixelObj.getRed()+85);
+	        pixelObj.setBlue(pixelObj.getBlue());
+	        pixelObj.setGreen(pixelObj.getGreen()-100);
+	      }
+	    }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -140,6 +222,24 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     }
+  }
+  
+  public void mirrorArms()
+  {
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+   
+    for (int row = 200; row<160; row--)
+    {
+    	for (int col = 100; col<200; col++)
+    	{
+    		topPixel = pixels[row][col];
+    		bottomPixel = pixels[row+50][col];
+    		bottomPixel.setColor(topPixel.getColor());
+    	}
+    }
+    
   }
   
   /** copy from the passed fromPic to the
