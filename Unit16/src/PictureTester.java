@@ -74,6 +74,30 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  public static void testMirrorVerticalRightToLeft()
+  {
+    Picture bike = new Picture("redMotorcycle.jpg");
+    bike.explore();
+    bike.mirrorVerticalRightToLeft();
+    bike.explore();
+  }
+  
+  public static void testMirrorHorizontal()
+  {
+    Picture bike = new Picture("redMotorcycle.jpg");
+    bike.explore();
+    bike.mirrorHorizontal();
+    bike.explore();
+  }
+  
+  public static void testMirrorHorizontalBotToTop()
+  {
+    Picture bike = new Picture("redMotorcycle.jpg");
+    bike.explore();
+    bike.mirrorHorizontalBotToTop();
+    bike.explore();
+  }
+  
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -90,7 +114,7 @@ public class PictureTester
     arms.mirrorArms();
     arms.explore();
   }
-  /*
+  
   public static void testMirrorGull()
   {
     Picture gull = new Picture("seagull.jpg");
@@ -101,13 +125,13 @@ public class PictureTester
   
   public static void testMirrorDiagonal()
   {
-    Picture diagonal = new Picture("diagonal.jpg");
+    Picture diagonal = new Picture("beach.jpg");
     diagonal.explore();
     diagonal.mirrorDiagonal();
     diagonal.explore();
   }
   
-  /** Method to test the collage method 
+  /** Method to test the collage method**/
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
@@ -116,11 +140,32 @@ public class PictureTester
     canvas.explore();
   }
   
-  public void testCopy()//not sure which file to use
+  public static void testCopy()
   {
-	  Picture canvas = new Picture("640x480.jpg");
+	  Picture canvas = new Picture("water.jpg");
+	  canvas.copy(new Picture("butterfly1.jpg"), 100, 50);
+	  canvas.copy(new Picture("blueMotorcycle.jpg"), 200, 250 );
 	  canvas.explore();
-	  canvas.copy();
+  }
+  
+  public static void testCopy2()
+  {
+	  Picture canvas = new Picture("water.jpg");
+	  canvas.copy2(new Picture("butterfly1.jpg"), 100, 50, 150, 100);
+	  canvas.copy2(new Picture("blueMotorcycle.jpg"), 200, 250, 300, 350);
+	  canvas.explore();
+  }
+  
+  public static void testMyCollage()
+  {
+	  Picture canvas = new Picture("water.jpg");
+	  canvas.onlyBlue();
+	  Picture temp = new Picture("butterfly1.jpg");
+	  temp.mirrorDiagonal();
+	  canvas.copy(temp, 100, 50);
+	  temp = new Picture("blueMotorcycle.jpg");
+	  temp.grayscale();
+	  canvas.copy(temp, 200, 250 );
 	  canvas.explore();
   }
   
@@ -142,21 +187,26 @@ public class PictureTester
     // to run
 	  
 	  
-    //*testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
-    //*testKeepOnlyRed();
-    //*testKeepOnlyGreen();
-    //*testNegate();
-    //*testGrayscale();
-    //*testFixUnderwater();
-    //*testMirrorVertical();
-    //*testMirrorTemple();
-    testMirrorArms();
+    //testKeepOnlyRed();
+    //testKeepOnlyGreen();
+    //testNegate();
+    //testGrayscale();
+    //testFixUnderwater();
+    //testMirrorVertical();
+	//testMirrorVerticalRightToLeft();
+	//testMirrorHorizontal();
+	//testMirrorHorizontalBotToTop();
+    //testMirrorTemple();
+    //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-    //*testCollage();
-    //*testCopy();
-    //*testEdgeDetection();        // stops here?
+    //testCollage();
+    //testCopy();
+	//testCopy2();
+    //testMyCollage();
+    //testEdgeDetection();
 	  
 	  
     //testEdgeDetection2();
