@@ -28,8 +28,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//set up all variables related to the game
 
 		ball = new Ball(120, 100, 10, 10, Color.blue, 2, 1);
-		square = new Paddle(400, 300, 10, 10, Color.orange, 2);
-		blocks = new ArrayList<Block>();
+		square = new Paddle(400, 300, 50, 50, Color.orange, 2);
+		blocks = new ArrayList<Block>();/**
 		for(int i = 0; i<9; i++)
 		{
 			//top
@@ -55,7 +55,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			blocks.add(temp);
 			temp = new Block(740, 70*j+60, 10, 65, Color.red);
 			blocks.add(temp);
-		}
+		}**/
 		
 		keys = new boolean[4];
     
@@ -150,27 +150,37 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				{
 					ball.setXSpeed(-ball.getXSpeed());
 				}
-				graphToBack.setColor(Color.white);
-				graphToBack.fillRect(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight());
-				blocks.remove(temp);
-				break;
 			}
 		}
 		
+		//see if the ball hits the paddle top or bottom
+		if(ball.getX()>=square.getX()-square.getWidth()/2
+				&& ball.getX()<=square.getX()+square.getWidth()/2
+				&& (ball.getY()<=square.getY()-square.getHeight()/2-ball.getHeight()*2)
+				)
+		{
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		/**
+		graphToBack.setColor(Color.white);
+		graphToBack.fillRect(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight());
+		blocks.remove(temp);
+		break;
+		**/
 		//see if the paddles need to be moved
-		if(keys[0] == true)
+		if(keys[0] == true && square.getY()>=15)
 		{
 			square.moveUpAndDraw(graphToBack);
 		}
-		if(keys[1] == true)
+		if(keys[1] == true && square.getX()>=15)
 		{
 			square.moveLeftAndDraw(graphToBack);
 		}
-		if(keys[2] == true)
+		if(keys[2] == true && square.getY()<=525)
 		{
 			square.moveDownAndDraw(graphToBack);
 		}
-		if(keys[3] == true)
+		if(keys[3] == true && square.getX()<=775)
 		{
 			square.moveRightAndDraw(graphToBack);
 		}
