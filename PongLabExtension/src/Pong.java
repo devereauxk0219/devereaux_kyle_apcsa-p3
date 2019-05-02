@@ -28,8 +28,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//set up all variables related to the game
 
 		ball = new Ball(120, 100, 10, 10, Color.blue, 2, 1);
-		square = new Paddle(400, 300, 50, 50, Color.orange, 2);
-		blocks = new ArrayList<Block>();/**
+		square = new Paddle(400, 300, 40, 40, Color.orange, 2);
+		blocks = new ArrayList<Block>();
 		for(int i = 0; i<9; i++)
 		{
 			//top
@@ -55,7 +55,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			blocks.add(temp);
 			temp = new Block(740, 70*j+60, 10, 65, Color.red);
 			blocks.add(temp);
-		}**/
+		}
 		
 		keys = new boolean[4];
     
@@ -113,60 +113,74 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		for (int j = 0; j<blocks.size(); j++)
 		{
 			Block temp = blocks.get(j);
-			System.out.println(j);
 			
-			if((ball.getX()<=temp.getX()+temp.getWidth()+Math.abs(ball.getXSpeed()))
-					&&(ball.getY()>=temp.getY()
-					&& ball.getY()<=temp.getY()+temp.getHeight()
-					|| ball.getY()+ball.getHeight()>=temp.getY()
-					&& ball.getY()+ball.getHeight()<=temp.getY()+temp.getHeight()))
+			//if hits top
+			if(temp.getX() <= ball.getX() && ball.getX()+ball.getWidth()<= temp.getX()+temp.getWidth()
+				&& (ball.getY() < temp.getY()+temp.getHeight() && temp.getY() <= ball.getY()+ball.getHeight()))
 			{
-				if(ball.getX()<=temp.getX()+temp.getWidth()-Math.abs(ball.getXSpeed()))
-				{
-					ball.setYSpeed(-ball.getYSpeed());
-				}
-				else
-				{
-					ball.setXSpeed(-ball.getXSpeed());
-				}
-				graphToBack.setColor(Color.white);
-				graphToBack.fillRect(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight());
+				temp.setColor(Color.white);
+				temp.draw(graphToBack);
 				blocks.remove(temp);
-				break;
+				ball.setYSpeed(-ball.getYSpeed());
+				restart();
 			}
-			
-			//see if the ball hits the right paddle
-			else if((temp.getX()-Math.abs(ball.getXSpeed())<=ball.getX()+ball.getWidth())
-					&&(ball.getY()-ball.getHeight()>=temp.getY()
-					&& ball.getY()-ball.getHeight()<=temp.getY()+temp.getHeight()
-					|| ball.getY()+ball.getHeight()>=temp.getY()
-					&& ball.getY()+ball.getHeight()<=temp.getY()+temp.getHeight()))
+			//bottom
+			if(temp.getX() <= ball.getX() && ball.getX()+ball.getWidth()<= temp.getX()+temp.getWidth()
+					&& (ball.getY() <= temp.getY()+temp.getHeight() &&  temp.getY() < ball.getY()+ball.getHeight()))
 			{
-				if(temp.getX()+Math.abs(ball.getXSpeed())<=ball.getX()+ball.getWidth())
-				{
-					ball.setYSpeed(-ball.getYSpeed());
-				}
-				else
-				{
-					ball.setXSpeed(-ball.getXSpeed());
-				}
+				temp.setColor(Color.white);
+				temp.draw(graphToBack);
+				blocks.remove(temp);
+				ball.setYSpeed(-ball.getYSpeed());
+				restart();
+			}
+			//left
+			if(temp.getY() <= ball.getY() && ball.getY()+ball.getHeight()<=temp.getY()+temp.getHeight()
+					&& (temp.getX()<ball.getX()&& ball.getX()<= temp.getX()+temp.getWidth()))
+			{
+				temp.setColor(Color.white);
+				temp.draw(graphToBack);
+				blocks.remove(temp);
+				ball.setXSpeed(-ball.getXSpeed());
+				restart();
+			}
+			//right
+			if(temp.getY()<=ball.getY() && ball.getY()+ball.getHeight()<=temp.getY()+temp.getHeight()
+					&& (temp.getX()>ball.getX() && temp.getX() <= ball.getX()+ball.getWidth()))
+			{
+				temp.setColor(Color.white);
+				temp.draw(graphToBack);
+				blocks.remove(temp);
+				ball.setXSpeed(-ball.getXSpeed());
+				restart();
 			}
 		}
 		
-		//see if the ball hits the paddle top or bottom
-		if(ball.getX()>=square.getX()-square.getWidth()/2
-				&& ball.getX()<=square.getX()+square.getWidth()/2
-				&& (ball.getY()<=square.getY()-square.getHeight()/2-ball.getHeight()*2)
-				)
+		//see if the ball hits the paddle top
+		if(square.getX() <= ball.getX() && ball.getX()+ball.getWidth()<= square.getX()+square.getWidth()
+			&& (ball.getY() < square.getY()+square.getHeight() && square.getY() <= ball.getY()+ball.getHeight()))
 		{
 			ball.setYSpeed(-ball.getYSpeed());
 		}
-		/**
-		graphToBack.setColor(Color.white);
-		graphToBack.fillRect(temp.getX(), temp.getY(), temp.getWidth(), temp.getHeight());
-		blocks.remove(temp);
-		break;
-		**/
+		//bottom
+		if(square.getX() <= ball.getX() && ball.getX()+ball.getWidth()<= square.getX()+square.getWidth()
+				&& (ball.getY() <= square.getY()+square.getHeight() &&  square.getY() < ball.getY()+ball.getHeight()))
+		{
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		//left
+		if(square.getY() <= ball.getY() && ball.getY()+ball.getHeight()<=square.getY()+square.getHeight()
+				&& (square.getX()<ball.getX()&& ball.getX()<= square.getX()+square.getWidth()))
+		{
+			ball.setXSpeed(-ball.getXSpeed());
+		}
+		//right
+		if(square.getY()<=ball.getY() && ball.getY()+ball.getHeight()<=square.getY()+square.getHeight()
+				&& (square.getX()>ball.getX() && square.getX() <= ball.getX()+ball.getWidth()))
+		{
+			ball.setXSpeed(-ball.getXSpeed());
+		}
+		
 		//see if the paddles need to be moved
 		if(keys[0] == true && square.getY()>=15)
 		{
@@ -188,6 +202,44 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		twoDGraph.drawImage(back, null, 0, 0);
 		
 	}
+   
+   public void restart()
+   {
+	   if (blocks.size()==0)
+	   {
+		   try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		   for(int i = 0; i<9; i++)
+			{
+				//top
+				Block temp = new Block(70*i+80, 40, 65, 10, Color.red);
+				blocks.add(temp);
+				temp = new Block(70*i+80, 60, 65, 10, Color.red);
+				blocks.add(temp);
+				//bottom
+				temp = new Block(70*i+80, 470, 65, 10, Color.red);
+				blocks.add(temp);
+				temp = new Block(70*i+80, 490, 65, 10, Color.red);
+				blocks.add(temp);
+			}
+			for (int j = 0; j<6; j++)
+			{
+				//left
+				Block temp = new Block(30, 70*j+60, 10, 65, Color.red);
+				blocks.add(temp);
+				temp = new Block(50, 70*j+60, 10, 65, Color.red);
+				blocks.add(temp);
+				//right
+				temp = new Block(760, 70*j+60, 10, 65, Color.red);
+				blocks.add(temp);
+				temp = new Block(740, 70*j+60, 10, 65, Color.red);
+				blocks.add(temp);
+			}
+	   }
+   }
 
 	public void keyPressed(KeyEvent e)
 	{
