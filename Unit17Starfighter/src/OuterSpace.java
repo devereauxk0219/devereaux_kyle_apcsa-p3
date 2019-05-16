@@ -26,7 +26,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Bullets shots;
 	private boolean reloaded;
 	private int ticker;
-
+	private int continuousTicker;
+	
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -38,12 +39,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		ship = new Ship(380, 400, 50, 50, 3);
 		horde1 = new AlienHorde(8, 50, 25);
-		horde2 = new AlienHorde(8, 300, 75);
+		horde2 = new AlienHorde(8, 75, 75);
 		horde2.setSpeed(-horde2.getSpeed());
 		shots = new Bullets();
 		
 		reloaded = true;
 		ticker = 0;
+		continuousTicker = 0;
 		
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -112,7 +114,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		horde1.moveEmAll();
 		horde2.moveEmAll();
 
-		//horde1.moveDown();
+		if(continuousTicker%12==0)
+		{
+			horde1.moveDown();
+			horde2.moveDown();
+		}
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 		ArrayList<Alien> alienList = (ArrayList<Alien>) horde1.getList();
@@ -142,6 +148,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("LOSER", 400, 300);
 				twoDGraph.drawImage(back,null,0 ,0);
 				ship.end();
+				horde1.end();
+				horde2.end();
 			}
 		}
 		
@@ -171,6 +179,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("LOSER", 400, 300);
 				twoDGraph.drawImage(back,null,0 ,0);
 				ship.end();
+				horde1.end();
+				horde2.end();
 			}
 		}
 		
@@ -182,6 +192,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ticker++;
 		}
+		continuousTicker++;
 		
 		shots.drawEmAll(graphToBack);
 		ship.draw(graphToBack);

@@ -13,13 +13,15 @@ import java.util.List;
 public class AlienHorde
 {
 	private List<Alien> aliens;
+	private boolean end;
 
 	public AlienHorde(int size, int x, int y)
 	{
+		end = false;
 		aliens = new ArrayList<Alien>();
 		for(int i = 0; i<size; i++)
 		{
-			aliens.add(new Alien(60*i + x, y, 50, 50, 1));
+			aliens.add(new Alien(90*i + x, y, 50, 50, 1));
 		}
 	}
 
@@ -30,9 +32,12 @@ public class AlienHorde
 
 	public void drawEmAll( Graphics window )
 	{
-		for(int i = 0; i<aliens.size(); i++)
+		if(!end)
 		{
-			aliens.get(i).draw(window);
+			for(int i = 0; i<aliens.size(); i++)
+			{
+				aliens.get(i).draw(window);
+			}
 		}
 	}
 
@@ -85,7 +90,7 @@ public class AlienHorde
 	{
 		for(int i = 0; i<aliens.size(); i++)
 		{
-			aliens.get(i).setY(aliens.get(i).getY()+aliens.get(i).getSpeed());
+			aliens.get(i).setY(aliens.get(i).getY()+Math.abs(aliens.get(i).getSpeed()));
 		}
 	}
 
@@ -103,6 +108,11 @@ public class AlienHorde
 	public void remove(int i)
 	{
 		aliens.remove(i);
+	}
+	
+	public void end()
+	{
+		end = true;
 	}
 	
 	public List<Alien> getList()
