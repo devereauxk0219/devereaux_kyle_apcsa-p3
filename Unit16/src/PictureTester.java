@@ -178,6 +178,17 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testEncodeDecode()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    Picture msg = new Picture("msg.jpg");
+    beach.encode(msg);
+    beach.explore();
+    beach.decode();
+    beach.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -187,13 +198,16 @@ public class PictureTester
     // to run
 	  
 	  
+	testEncodeDecode();
+	  
+	  
     //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    testNegate();
-    testGrayscale();
-    testFixUnderwater();
+    //testNegate();
+    //testGrayscale();
+    //testFixUnderwater();
     //testMirrorVertical();
 	//testMirrorVerticalRightToLeft();
 	//testMirrorHorizontal();

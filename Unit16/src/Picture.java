@@ -71,6 +71,133 @@ public class Picture extends SimplePicture
   
   ////////////////////// methods ///////////////////////////////////////
   
+  private static String[] codes = new String[] {"BLK", "MAG", "BLU", "GRN", "YLW", "ORG", "RED"};
+  private static Color[] colors = new Color[] {Color.BLACK, Color.MAGENTA, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED};
+  
+  public void encode(Picture msg)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel[][] msgPixels = msg.getPixels2D();
+	  for (int row = 0; row<msgPixels.length; row++)
+	  {
+	    for (int col = 0; col<msgPixels[row].length; col++)
+	    {
+	       //if needs to be nullified
+	       if(msgPixels[row][col].getRed() != 0 && msgPixels[row][col].getGreen() != 0 && msgPixels[row][col].getBlue() != 0)
+	       {
+	    	  String code = getHex(pixels[row][col].getRed()) + getHex(pixels[row][col].getGreen()) + getHex(pixels[row][col].getBlue());
+	    	  
+	    	  if(code.equals("BLK"))
+ 	    	  {
+ 	    		  pixels[row][col].setRed(pixels[row][col].getRed()+1);
+ 	    	  }
+	    	  
+	       }
+	       else  //modification
+	       {
+	    	   String codeDefault = "BLK";
+	    	   int red = pixels[row][col].getRed();
+	    	   pixels[row][col].setRed(getRGB(red, codeDefault.substring(0,1)));
+	    	   int green = pixels[row][col].getGreen();
+	    	   pixels[row][col].setGreen(getRGB(green, codeDefault.substring(1,2)));
+	    	   int blue = pixels[row][col].getBlue();
+	    	   pixels[row][col].setBlue(getRGB(blue, codeDefault.substring(2,3)));
+	       }
+	    }
+	  }
+  }
+  public void decode()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels)
+	  {
+	    for (Pixel pixelObj : rowArray)
+	    {
+	      String code = getHex(pixelObj.getRed()) + getHex(pixelObj.getGreen()) + getHex(pixelObj.getBlue());
+	      
+	      boolean found = false;
+	      for(int i = 0; i<codes.length; i++)
+	      {
+	    	  if(codes[i].equals(code))
+	    	  {
+	    		  pixelObj.setColor(colors[i]);
+	    		  found = true;
+	    		  break;
+	    	  }
+	      }
+	      if(!found)
+	      {
+	    	pixelObj.setColor(Color.WHITE);  
+	      }
+	    }
+	  }
+  }
+  
+  public int getRGB(int RGBnum, String letter)
+  {
+	   int colorAbove = RGBnum; int colorBelow = RGBnum;
+	   while(true)
+	   {
+		   if(getHex(colorAbove).equals(letter))
+		   {
+			   return colorAbove;
+		   }
+		   else if (colorAbove < 255)
+		   {
+			   colorAbove ++;
+		   }
+		   if(getHex(colorBelow).equals(letter))
+		   {
+			   return colorBelow;
+		   }
+		   else if (colorBelow > 0)
+		   {
+			   colorBelow --;
+		   }
+	   }
+  }
+  
+  public String getHex(int RGBnum)
+  {
+	  String hex = "";
+	  if((RGBnum/10)%2 != 0)
+      {
+    	  hex += "4";
+      } else {
+    	  hex += "5";
+      }
+      int sumLastTwo = (RGBnum/10)%10 + RGBnum%10;
+      if(sumLastTwo > 9)
+      {
+    	  switch((((sumLastTwo-10)*5)/8)+10)
+    	  {
+    	  	case(10): hex += "A"; break;
+    	  	case(11): hex += "B"; break;
+    	  	case(12): hex += "C"; break;
+    	  	case(13): hex += "D"; break;
+    	  	case(14): hex += "E"; break;
+    	  	case(15): hex += "F"; break;
+    	  }
+      } else {
+    	  hex += sumLastTwo + "";
+      }
+      System.out.print(RGBnum + "\t");
+      return hexToString(hex);
+  }
+  
+  public static String hexToString(String hexStr) {
+	  	System.out.println(hexStr + "\t");
+	  
+	  	StringBuilder output = new StringBuilder("");
+	    
+	    for (int i = 0; i < hexStr.length(); i += 2) {
+	        String str = hexStr.substring(i, i + 2);
+	        output.append((char) Integer.parseInt(str, 16));
+	    }
+	     System.out.println(output.toString());
+	    return output.toString();
+	}
+  
   /**
    * Method to return a string with information about this picture.
    * @return a string with information about the picture such as fileName,
