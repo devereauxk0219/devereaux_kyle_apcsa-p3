@@ -36,6 +36,52 @@ public class Picture extends SimplePicture
   {
     // let the parent class handle this fileName
     super(fileName);
+    System.out.println("runing");
+    asciiVals = new String[256];
+    for (int i = 0; i<=255; i++)
+	  {
+		  String hex = "";
+		  //hex += "4";
+		  if((i/10)%2 != 0)
+	      {
+	    	  hex += "4";
+	      } else {
+	    	  hex += "5";
+	      }
+	      int sumLastTwo = (i/10)%10 + i%10;
+	      sumLastTwo = (sumLastTwo*5)/6;   // scales to 16  [0, 15]
+	      if(sumLastTwo > 9)
+	      {
+	    	  //switch((((sumLastTwo-10)*5)/8)+10)
+	    	  switch (sumLastTwo)
+	    	  {
+	    	  	case(10): hex += "A"; break;
+	    	  	case(11): hex += "B"; break;
+	    	  	case(12): hex += "C"; break;
+	    	  	case(13): hex += "D"; break;
+	    	  	case(14): hex += "E"; break;
+	    	  	case(15): hex += "F"; break;
+	    	  }
+	      } else {
+	    	  hex += sumLastTwo + "";
+	      }
+	      if(i%5 == 0)
+	      {
+	    	  try
+	    	  {
+	    		  asciiVals[i] = "42";
+		    	  asciiVals[i+1] = "4C";
+		    	  asciiVals[i+2] = "4B";
+		    	  i += 2;
+	    	  }
+	    	  catch(ArrayIndexOutOfBoundsException e) {}
+	      }
+	      else
+	      {
+	    	  asciiVals[i] = hex;
+	      }
+	      //System.out.println(Arrays.toString(asciiVals));
+	  }
   }
   
   /**
@@ -57,7 +103,9 @@ public class Picture extends SimplePicture
   public Picture(Picture copyPicture)
   {
     // let the parent class do the copy
+	  
     super(copyPicture);
+    
   }
   
   /**
@@ -67,15 +115,20 @@ public class Picture extends SimplePicture
   public Picture(BufferedImage image)
   {
     super(image);
+    
   }
   
   ////////////////////// methods ///////////////////////////////////////
   
-  private static String[] codes = new String[] {"KZJ", "BLK", "MAG", "BLU", "GRN", "YLW", "ORG", "RED"};
+  private static String[] codes = new String[] {"BLK", "BLK", "MAG", "BLU", "GRN", "YLW", "ORG", "RED"};
   private static Color[] colors = new Color[] {Color.BLACK, Color.BLACK, Color.MAGENTA, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED};
+  private String[] asciiVals;
   
   public void encode(Picture msg)
   {
+	  
+	  
+	  
 	  Pixel[][] pixels = this.getPixels2D();
 	  Pixel[][] msgPixels = msg.getPixels2D();
 	  for (int row = 0; row<msgPixels.length; row++)
@@ -88,7 +141,7 @@ public class Picture extends SimplePicture
 	    	   
 	    	  String code = getHex(pixels[row][col].getRed()) + getHex(pixels[row][col].getGreen()) + getHex(pixels[row][col].getBlue());
 	    	  
-	    	  if(code.equals("KZJ"))
+	    	  if(code.equals("BLK"))
  	    	  {
  	    		  pixels[row][col].setRed(pixels[row][col].getRed()+1);
  	    	  }
@@ -97,7 +150,7 @@ public class Picture extends SimplePicture
 	       else  //modification
 	       {
 	    	   
-	    	   String codeDefault = "KZJ";
+	    	   String codeDefault = "BLK";
 	    	   int red = pixels[row][col].getRed();
 	    	   pixels[row][col].setRed(getRGB(red, codeDefault.substring(0,1)));
 	    	   int green = pixels[row][col].getGreen();
@@ -163,33 +216,7 @@ public class Picture extends SimplePicture
   
   public String getHex(int RGBnum)
   {
-	  String hex = "";
-	  //hex += "4"; 
-	  if((RGBnum/10)%2 != 0)
-      {
-    	  hex += "4";
-      } else {
-    	  hex += "5";
-      }
-      int sumLastTwo = (RGBnum/10)%10 + RGBnum%10;
-      sumLastTwo = (sumLastTwo*5)/6;   // scales to 16  [0, 15]
-      if(sumLastTwo > 9)
-      {
-    	  //switch((((sumLastTwo-10)*5)/8)+10)
-    	  switch (sumLastTwo)
-    	  {
-    	  	case(10): hex += "A"; break;
-    	  	case(11): hex += "B"; break;
-    	  	case(12): hex += "C"; break;
-    	  	case(13): hex += "D"; break;
-    	  	case(14): hex += "E"; break;
-    	  	case(15): hex += "F"; break;
-    	  }
-      } else {
-    	  hex += sumLastTwo + "";
-      }
-      //System.out.print(RGBnum + "\t");
-      return hexToString(hex);
+	  return hexToString(asciiVals[RGBnum]);
   }
   
   public static String hexToString(String hexStr) {
@@ -201,7 +228,7 @@ public class Picture extends SimplePicture
 	        String str = hexStr.substring(i, i + 2);
 	        output.append((char) Integer.parseInt(str, 16));
 	    }
-	     //System.out.println(output.toString());
+	    // System.out.println(output.toString());
 	    return output.toString();
 	}
   

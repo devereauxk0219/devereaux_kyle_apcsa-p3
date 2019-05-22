@@ -182,7 +182,7 @@ public class PictureTester
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    Picture msg = new Picture("msg.jpg");
+    Picture msg = new Picture("apple_icon.jpg");
     msg.explore();
     beach.encode(msg);
     beach.explore();
