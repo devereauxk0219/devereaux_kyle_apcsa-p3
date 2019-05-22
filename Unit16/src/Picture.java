@@ -71,8 +71,8 @@ public class Picture extends SimplePicture
   
   ////////////////////// methods ///////////////////////////////////////
   
-  private static String[] codes = new String[] {"BLK", "MAG", "BLU", "GRN", "YLW", "ORG", "RED"};
-  private static Color[] colors = new Color[] {Color.BLACK, Color.MAGENTA, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED};
+  private static String[] codes = new String[] {"KZJ", "BLK", "MAG", "BLU", "GRN", "YLW", "ORG", "RED"};
+  private static Color[] colors = new Color[] {Color.BLACK, Color.BLACK, Color.MAGENTA, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.RED};
   
   public void encode(Picture msg)
   {
@@ -83,11 +83,12 @@ public class Picture extends SimplePicture
 	    for (int col = 0; col<msgPixels[row].length; col++)
 	    {
 	       //if needs to be nullified
-	       if(msgPixels[row][col].getRed() != 0 && msgPixels[row][col].getGreen() != 0 && msgPixels[row][col].getBlue() != 0)
-	       {
+	       if(msgPixels[row][col].getRed() > 100 && msgPixels[row][col].getGreen() > 100 && msgPixels[row][col].getBlue() > 100)
+	       {  // modify these >100 values to fine tune resolution
+	    	   
 	    	  String code = getHex(pixels[row][col].getRed()) + getHex(pixels[row][col].getGreen()) + getHex(pixels[row][col].getBlue());
 	    	  
-	    	  if(code.equals("BLK"))
+	    	  if(code.equals("KZJ"))
  	    	  {
  	    		  pixels[row][col].setRed(pixels[row][col].getRed()+1);
  	    	  }
@@ -95,13 +96,15 @@ public class Picture extends SimplePicture
 	       }
 	       else  //modification
 	       {
-	    	   String codeDefault = "BLK";
+	    	   
+	    	   String codeDefault = "KZJ";
 	    	   int red = pixels[row][col].getRed();
 	    	   pixels[row][col].setRed(getRGB(red, codeDefault.substring(0,1)));
 	    	   int green = pixels[row][col].getGreen();
 	    	   pixels[row][col].setGreen(getRGB(green, codeDefault.substring(1,2)));
 	    	   int blue = pixels[row][col].getBlue();
 	    	   pixels[row][col].setBlue(getRGB(blue, codeDefault.substring(2,3)));
+	    	   
 	       }
 	    }
 	  }
@@ -113,6 +116,7 @@ public class Picture extends SimplePicture
 	  {
 	    for (Pixel pixelObj : rowArray)
 	    {
+	      
 	      String code = getHex(pixelObj.getRed()) + getHex(pixelObj.getGreen()) + getHex(pixelObj.getBlue());
 	      
 	      boolean found = false;
@@ -142,17 +146,17 @@ public class Picture extends SimplePicture
 		   {
 			   return colorAbove;
 		   }
-		   else if (colorAbove < 255)
-		   {
-			   colorAbove ++;
-		   }
-		   if(getHex(colorBelow).equals(letter))
+		   else if(getHex(colorBelow).equals(letter))
 		   {
 			   return colorBelow;
 		   }
-		   else if (colorBelow > 0)
+		   if (colorBelow > 0)
 		   {
 			   colorBelow --;
+		   }
+		   if (colorAbove < 255)
+		   {
+			   colorAbove ++;
 		   }
 	   }
   }
@@ -160,6 +164,7 @@ public class Picture extends SimplePicture
   public String getHex(int RGBnum)
   {
 	  String hex = "";
+	  //hex += "4"; 
 	  if((RGBnum/10)%2 != 0)
       {
     	  hex += "4";
@@ -167,9 +172,11 @@ public class Picture extends SimplePicture
     	  hex += "5";
       }
       int sumLastTwo = (RGBnum/10)%10 + RGBnum%10;
+      sumLastTwo = (sumLastTwo*5)/6;   // scales to 16  [0, 15]
       if(sumLastTwo > 9)
       {
-    	  switch((((sumLastTwo-10)*5)/8)+10)
+    	  //switch((((sumLastTwo-10)*5)/8)+10)
+    	  switch (sumLastTwo)
     	  {
     	  	case(10): hex += "A"; break;
     	  	case(11): hex += "B"; break;
@@ -181,12 +188,12 @@ public class Picture extends SimplePicture
       } else {
     	  hex += sumLastTwo + "";
       }
-      System.out.print(RGBnum + "\t");
+      //System.out.print(RGBnum + "\t");
       return hexToString(hex);
   }
   
   public static String hexToString(String hexStr) {
-	  	System.out.println(hexStr + "\t");
+	  	//System.out.print(hexStr + "\t");
 	  
 	  	StringBuilder output = new StringBuilder("");
 	    
@@ -194,7 +201,7 @@ public class Picture extends SimplePicture
 	        String str = hexStr.substring(i, i + 2);
 	        output.append((char) Integer.parseInt(str, 16));
 	    }
-	     System.out.println(output.toString());
+	     //System.out.println(output.toString());
 	    return output.toString();
 	}
   

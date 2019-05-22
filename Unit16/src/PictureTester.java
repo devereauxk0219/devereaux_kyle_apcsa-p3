@@ -183,6 +183,7 @@ public class PictureTester
     Picture beach = new Picture("beach.jpg");
     beach.explore();
     Picture msg = new Picture("msg.jpg");
+    msg.explore();
     beach.encode(msg);
     beach.explore();
     beach.decode();
